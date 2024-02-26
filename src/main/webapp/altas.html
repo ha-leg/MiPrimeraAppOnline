@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Naves</title>
+    <link rel="stylesheet" href="css/limpiarGenericos.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/slider.css">
+    <script src="https://kit.fontawesome.com/887ee4ad6e.js" crossorigin="anonymous"></script>
+    <script src="js/slider.js" type="text/javascript"></script>
+    <style>
+
+        #botonCambiaFoto{
+            padding: 10px;
+            background: #1f4b81;
+            color: aliceblue;
+            cursor: pointer ;
+        }
+
+    </style>
+    <script type="text/javascript">
+
+    window.onload = function() {
+    	
+    	 let usuario; 
+	      let xhr = new XMLHttpRequest();
+               xhr.onreadystatechange = function () {
+                   if (xhr.readyState === 4){
+                       if (xhr.status === 200) {
+                         try{
+                    	 usuario = JSON.parse(xhr.responseText);            
+              
+                    	 document.getElementById('usuario').innerHTML = usuario.nombre + " <a href='CerrarSesion'>CerrarSesión</a>";
+                         }catch (e) {
+							// TODO: handle exception
+							location.href = "login.html";
+						}
+                       }                    
+                   }
+               };
+
+               xhr.open("GET", "Logueo", false);
+               xhr.setRequestHeader("Content-Type", "application/json");
+               xhr.send();
+    
+    
+    }
+    </script>
+
+</head>
+<body>
+
+<div id="container">
+    <header>
+        <div class="cabecera">
+        <div id="usuario"></div>
+            <img src="img/logo.png"  title="Logo Naves" alt="Logo">
+            <h1 id="titulo">Web Federación Nebrijanos Unidos</h1>
+        </div>
+
+
+        <div class="login">
+            <!-- Espacio para el login -->
+
+        </div>
+
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a> </li>
+            <li><a href="altas.html">Alta naves</a> </li>
+            <li><a href="galeria_conJson.html">xxxx</a> </li>
+            <li><a href="#">xxxx</a> </li>
+            <li><a href="#">xxx</a> </li>
+        </ul>
+    </nav>
+    <section>
+
+        <!-- Estoy trabajando aquí -->
+        
+	<h1>Formulario Alta Nave</h1>
+	<!-- En action importante decirle el servlet donde van los datos del form rellenado en la web -->
+	
+	<form name="AltaNave" action="SVNave" method="post">
+		<ul>
+			<li><label>Nombre: </label> <input type="text" name="nombre"></li>
+			<li><label>Clase: </label> <input type="text" name="clase"></li>
+			<li><label>Matrícula: </label> <input type="text" name="matricula"></li>
+			<li><label>Descripción: </label> <textarea name="descripcion"></textarea></li>
+			<li><label>Estado: </label> <input type="text" name="estado"></li>
+			<li><label>Foto: </label> <input type="file" name="foto"></li>
+			<li><input type="submit" value="Guardar"></li>
+			
+			<!-- importante el name="", ya que es el que usará Java -->
+		</ul>
+		
+		
+	</form>
+
+
+    </section>
+    <hr>
+    <footer>
+        <ul>
+            <li><a href="index.html">Home</a> </li>
+            <li><a href="#">Naves</a> </li>
+            <li><a href="#">Blog</a> </li>
+            <li><a href="#">Contacto</a> </li>
+            <li><a href="#">Aviso Legal</a> </li>
+            <li><a href="#">Cookies</a> </li>
+        </ul>
+    </footer>
+</div>
+</body>
+
+</html>
